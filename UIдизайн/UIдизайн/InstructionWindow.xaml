@@ -1,0 +1,27 @@
+﻿<Window x:Class="UIдизайн.InstructionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIдизайн"
+        mc:Ignorable="d"
+        Title="Инструкция к программе" Height="501" Width="865" FontFamily="Times New Roman" FontSize="16" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+
+        <Image Source="Images/1.png" Margin="16,47,789,381" Stretch="Fill"/>
+        <Image Source="Images/2.png" Margin="16,119,789,309" Stretch="Fill"/>
+        <Image Source="Images/3.png" Margin="16,200,789,226" Stretch="Fill"/>
+        <TextBlock TextWrapping="Wrap" FontSize="16" Margin="83,191,469,238" FontFamily="Times New Roman"><Run Text="   Для построения вычисления точек и построения графика нажмите кнопку «Построить"/><Run Text="»"/><Run Text="."/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="198,25,0,0" TextWrapping="Wrap" Text="Инструкция по использованию программы для исследования функций: " VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="81,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Width="313"><Run Text="   Введите функцию в текстовое поле"/><Run Text="."/><Run Text=" "/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="479,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="362" FontFamily="Times New Roman" FontSize="16"><Run Text="   Убедитесь, что вы используете правильные операторы:"/><LineBreak/><Run Text="   "/><Run Text="1) "/><Run Text="Для умножения используйте символ *. "/><LineBreak/><Run Text="   Например, вместо 2x "/><Run Text="необходимо"/><Run Text=" записать 2*x или x*2."/><LineBreak/><Run Text="   "/><Run Text="2) "/><Run Text="Для возведения в степень используйте символ ^. "/><LineBreak/><Run Text="   Например, для "/><Run Text="возведения "/><Run Text="x "/><Run Text="в квадрат пишите"/><Run Text=" x^2."/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="83,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="313" FontFamily="Times New Roman" FontSize="16"><Run Text="   После ввода функции на"/><Run Text="жмите кнопку «Рассчитать», чтобы программа обработала введенную функцию."/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="83,270,0,0" TextWrapping="Wrap" Text="   Если вы хотите ввести новую функцию или очистить текущие данные, нажмите кнопку «Очистить». Это сбросит все поля и графики." VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Width="313"/>
+        <TextBlock HorizontalAlignment="Left" Margin="83,344,0,0" TextWrapping="Wrap" Text="   Если вы хотите отменить последнее действие, нажмите кнопку «Отменить» или используйте сочетание клавиш Ctrl + Z." VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Width="313"/>
+        <Image Source="Images/Ras.png" Margin="481,169,247,245" Stretch="Fill" />
+        <Image Source="Images/Pos.png" Margin="671,170,39,246" Stretch="Fill" />
+        <Image Source="Images/4.png" Margin="16,279,789,145" Stretch="Fill"/>
+        <TextBlock HorizontalAlignment="Left" Margin="479,297,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"><Run Language="ru-ru" Text="Примечание"/></TextBlock>
+        <Image Source="Images/Function.png" Margin="483,70,40,329" StretchDirection="DownOnly" Cursor="None" Stretch="Fill" />
+    </Grid>
+</Window>

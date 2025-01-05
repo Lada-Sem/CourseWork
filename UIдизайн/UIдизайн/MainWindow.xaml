@@ -48,18 +48,19 @@
 
             <Grid>
 
-                <Menu x:Name="MyMenu" Style="{StaticResource MenuTheme}" Height="74" VerticalAlignment="Center" Background="#FF238222">
-                    <MenuItem Header="Редактирование" Foreground="White" Width="125" Height="75" FontFamily="Times New Roman" FontSize="16" >
-                        <MenuItem Header="Очистить исследование" Foreground="Black" Click="ClearResearch_Click"/>
+                <Menu x:Name="MyMenu" Style="{StaticResource MenuTheme}" Height="74" VerticalAlignment="Center" Background="#FF238222" Margin="-4,0,0,0">
+                    <MenuItem Header="Редактирование" Foreground="White" Width="137" Height="75" FontFamily="Times New Roman" FontSize="18" >
+                        <MenuItem Header="Очистить исследование" Foreground="Black" Click="ClearAllButton_Click" />
                         <MenuItem Header="Вернуть назад" Foreground="Black" InputGestureText="Ctrl+Z" Click="Undo_Click"/>
                         <Separator />
-                        <MenuItem Header="Exit" Foreground="White" Click="CloseBtn_Click"/>
+                        <MenuItem Header="Exit" Foreground="Black" Click="CloseBtn_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Инструменты" Foreground="White" Width="113" FontFamily="Times New Roman" FontSize="16" >
-                        <MenuItem Header="Калькулятор" Foreground="White" Click="ShowCalculator_Click"/>
+                    <MenuItem Header="Инструменты" Foreground="White" Width="130" FontFamily="Times New Roman" FontSize="18" >
+                        <MenuItem Header="Калькулятор" Foreground="Black" Click="ShowCalculator_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Помощь" Foreground="White" Width="100" FontFamily="Times New Roman" FontSize="16">
-                        <MenuItem Header="О программе" Foreground="Black"  Click="Undo_Click"/>
+                    <MenuItem Header="Помощь" Foreground="White" Width="100" FontFamily="Times New Roman" FontSize="18">
+                        <MenuItem Header="Инструкция" Foreground="Black"  Click="Instruct_Click"/>
+                        <MenuItem Header="О программе" Foreground="Black"  Click="ShowAbout_Click"/>
                     </MenuItem>
                 </Menu>
 
@@ -67,108 +68,110 @@
                 <Button x:Name="CloseBtn"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
-                       Height="30"
+                       Height="38"
                        Click="CloseBtn_Click"
-                       Width="40"
+                       Width="25"
                        Background="White"
-                       Foreground="White" Margin="1038,8,0,0">
-                    <!-- Medium Purple -->
+                       Foreground="White" Margin="1042,17,0,0">
+
+                    <StackPanel Orientation="Horizontal" Width="34" Height="37">
+                        <Image Source="Images/exit.png" Width="22" Height="25"/>
+                    </StackPanel>
+
                 </Button>
 
-                <Button x:Name="ShowCalculator" Content="Показать калькулятор" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="40"  Click="ShowCalculator_Click"  Margin="419,20,0,0" Background="White" FontFamily="Times New Roman" FontSize="14" >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="15"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
 
             </Grid>
             <Grid Margin="546,0,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="545" Background="#FF238222">
-                <oxy:PlotView x:Name='PlotView' Model='{Binding GraphModel}' Height='330' Width='330' Margin='108,43,107,194'/>
-                <TextBox x:Name='FunctionTextBox' HorizontalAlignment='Left' TextWrapping='Wrap' VerticalAlignment='Top' Width='120' Margin='173,393,0,0'/>
-                <Label x:Name='label1' Content='f(x) =' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='108,385,0,0' FontFamily='Times New Roman' FontSize='20'/>
-                <Button x:Name='PlotGraphButton' Content='Построить' HorizontalAlignment='Left' VerticalAlignment='Top' Click='PlotGraphButton_Click' Margin='329,469,0,0' Background='White' FontFamily='Times New Roman' FontSize='14' Height="39" Width="109">
+                <oxy:PlotView x:Name='PlotView' Model='{Binding GraphModel}' Height='330' Margin='56,50,55,187' FontFamily="Times New Roman" FontSize="18"/>
+                <TextBox x:Name='FunctionTextBox' HorizontalAlignment='Left' TextWrapping='Wrap' VerticalAlignment='Top' Width='260' Margin='230,400,0,0' FontFamily="Times New Roman" FontSize="18" Height="40"/>
+                <Label x:Name='label1' Content='f(x) =' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='173,409,0,0' FontFamily='Times New Roman' FontSize='18'/>
+                <Button x:Name='PlotGraphButton' Content='Построить' HorizontalAlignment='Left' VerticalAlignment='Top' Click='PlotGraphButton_Click' Margin='292,457,0,0' Background='White' FontFamily='Times New Roman' FontSize='18' Height="40" Width="110">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button x:Name="ClearAllButton" Content='Очистить' Height='32' HorizontalAlignment='Left' Margin='329,395,0,0' VerticalAlignment='Top' Background='White' FontFamily='Times New Roman' FontSize='14' Width="109" Click="ClearAllButton_Click" />
-                <DataGrid Name="PointsDataGrid" AutoGenerateColumns="False" Margin="108,422,340,10">
+                <Button x:Name="ClearAllButton" Content='Очистить' Height='40' HorizontalAlignment='Left' Margin='412,457,0,0' VerticalAlignment='Top' Background='White' FontFamily='Times New Roman' FontSize='18' Width="109" Click="ClearAllButton_Click" >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <DataGrid Name="PointsDataGrid" IsReadOnly="True" AutoGenerateColumns="False" Margin="56,401,384,14" FontFamily="Times New Roman" FontSize="18">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="X" Binding="{Binding X}" Width="50" />
                         <DataGridTextColumn Header="Y" Binding="{Binding Y}" Width="50" />
                     </DataGrid.Columns>
                 </DataGrid>
+                <Button x:Name="CalculateButton" Content="Рассчитать" HorizontalAlignment="Left" Margin="173,457,0,0" VerticalAlignment="Top" Click="CalculateButton_Click" Height="40" Width="108" Background="White" FontFamily="Times New Roman" FontSize="18">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
 
-            <Canvas Name="CalculatorPanel" Visibility="Collapsed" VerticalAlignment="Top" Height="180" Margin="200,345,349,0" Background="LightGray" Grid.Row="1">
-                <Button Content="1" Click="OneButton_Click" Width="50" Height="29" Canvas.Left="286" Canvas.Top="104" />
-                <Button Content="2" Click="TwoButton_Click" Width="50" Height="29" Canvas.Left="344" Canvas.Top="104" />
-                <Button Content="3" Click="ThreeButton_Click" Width="50" Height="29" Canvas.Left="403" Canvas.Top="104" />
+            <Canvas Name="CalculatorPanel"  VerticalAlignment="Top" Height="180" Margin="-3,387,545,0" Background="White" Grid.Row="1" Visibility="Collapsed">
+                <Button Content="1" Click="OneButton_Click" Width="50" Height="29" Canvas.Left="64" Canvas.Top="96" FontFamily="Times New Roman" FontSize="18" />
+                <Button Content="2" Click="TwoButton_Click" Width="50" Height="29" Canvas.Left="122" Canvas.Top="96" FontFamily="Times New Roman" FontSize="18" />
+                <Button Content="3" Click="ThreeButton_Click" Width="50" Height="29" Canvas.Left="181" Canvas.Top="96" FontFamily="Times New Roman" FontSize="18" />
 
-                <Button Content="4" Click="FourButton_Click" Width="50" Height="29" Canvas.Left="286" Canvas.Top="65" />
-                <Button Content="5" Click="FiveButton_Click" Width="50" Height="29" Canvas.Left="344" Canvas.Top="65" />
-                <Button Content="6" Click="SixButton_Click" Width="50" Height="29" Canvas.Left="403" Canvas.Top="65" />
+                <Button Content="4" Click="FourButton_Click" Width="50" Height="29" Canvas.Left="64" Canvas.Top="57" FontFamily="Times New Roman" FontSize="18" />
+                <Button Content="5" Click="FiveButton_Click" Width="50" Height="29" Canvas.Left="122" Canvas.Top="57" FontFamily="Times New Roman" FontSize="18" />
+                <Button Content="6" Click="SixButton_Click" Width="50" Height="29" Canvas.Left="181" Canvas.Top="57" FontFamily="Times New Roman" FontSize="18" />
 
-                <Button Content="7" Click="SevenButton_Click" Width="50" Height="29" Canvas.Left="286" Canvas.Top="26"/>
-                <Button Content="8" Click="EightButton_Click" Width="50" Height="29" Canvas.Left="344" Canvas.Top="26"/>
-                <Button Content="9" Click="NineButton_Click" Width="50" Height="29" Canvas.Left="403" Canvas.Top="26"/>
+                <Button Content="7" Click="SevenButton_Click" Width="50" Height="29" Canvas.Left="64" Canvas.Top="18" FontFamily="Times New Roman" FontSize="18"/>
+                <Button Content="8" Click="EightButton_Click" Width="50" Height="29" Canvas.Left="122" Canvas.Top="18" FontFamily="Times New Roman" FontSize="18"/>
+                <Button Content="9" Click="NineButton_Click" Width="50" Height="29" Canvas.Left="181" Canvas.Top="18" FontFamily="Times New Roman" FontSize="18"/>
 
-                <Button Content="." Click= "OperatorButton_Click" Width= "50" Height= "29"  Canvas.Left= "344"  Canvas.Top= "143"/>
-                <Button Content="=" Click= "EqualsButton_Click"  Width= "50"  Height= "29"  Canvas.Left= "403"  Canvas.Top= "143"/>
-                <Button Content="0" Click= "ZeroButton_Click"  Width= "50"  Height= "29"  Canvas.Left= "286"  Canvas.Top= "143"/>
-                <Button x:Name="DivideButton" Content="/" Click="DivideButton_Click" HorizontalAlignment="Left" Canvas.Left="462" Canvas.Top="26" VerticalAlignment="Center" Width="50" Height="29"/>
-                <Button x:Name="MultiplyButton" Content="*" Click="MultiplyButton_Click" HorizontalAlignment="Left" Canvas.Left="462" Canvas.Top="65" VerticalAlignment="Center" Width="50" Height="29"/>
-                <Button x:Name="MinusButton" Content="-" Click="MinusButton_Click" Width="50" HorizontalAlignment="Left" Canvas.Left="462" Canvas.Top="104" VerticalAlignment="Center" Height="29"/>
-                <Button x:Name="PlusButton" Content="+" Click="PlusButton_Click" HorizontalAlignment="Left" Canvas.Left="462" Canvas.Top="143" VerticalAlignment="Center" Width="50" Height="29"/>
-                <Button x:Name="SinButton" Content="sin" Click="SinButton_Click" HorizontalAlignment="Left" Canvas.Left="33" Canvas.Top="26" VerticalAlignment="Center" Width="50" Height="29"/>
-                <Button x:Name="CosButton" Content="cos" Click="CosButton_Click" HorizontalAlignment="Left" Canvas.Left="92" Canvas.Top="26" VerticalAlignment="Center" Width="50" Height="29"/>
-                <Button x:Name="TgButton" Content="tg" Click="TgButton_Click" HorizontalAlignment="Left" Canvas.Left="151" Canvas.Top="26" VerticalAlignment="Center" Height="29" Width="50"/>
-                <Button x:Name="CtgButton" Content="ctg" Click="CtgButton_Click" HorizontalAlignment="Left" Canvas.Left="209" Canvas.Top="26" VerticalAlignment="Top" Height="29" Width="50"/>
-                <Button x:Name="LnButton" Content="ln" Click="LnButton_Click" HorizontalAlignment="Left" Canvas.Left="209" Canvas.Top="65" VerticalAlignment="Top" Height="29" Width="50"/>
-                <Button x:Name="LgButton" Content="lg" Click="LgButton_Click" HorizontalAlignment="Left" Canvas.Left="151" Canvas.Top="65" VerticalAlignment="Top" Height="29" Width="50"/>
-                <Button x:Name="FirstBracketButton" Content="(" Click="FirstBracketButton_Click" HorizontalAlignment="Center" Canvas.Left="33" Canvas.Top="104" VerticalAlignment="Top" Width="50" Height="29"/>
-                <Button x:Name="SecondBracketButton" Content=")" Click="SecondBracketButton_Click" HorizontalAlignment="Left" Canvas.Left="92" Canvas.Top="104" VerticalAlignment="Center" Height="29" Width="50"/>
-                <Button x:Name="DegreeButton" Content="^" Click="DegreeButton_Click" HorizontalAlignment="Left" Canvas.Left="151" Canvas.Top="104" VerticalAlignment="Center" Height="29" Width="50"/>
-                <Button x:Name="FactorialButton" Content="!" Click="FactorialButton_Click" HorizontalAlignment="Left" Canvas.Left="209" Canvas.Top="104" VerticalAlignment="Center" Height="29" Width="50"/>
-                <Button x:Name="PiButton" Content="π" Click="PiButton_Click" HorizontalAlignment="Center" Canvas.Left="92" Canvas.Top="143" VerticalAlignment="Center" Width="50" Height="27"/>
-                <Button x:Name="ExhibitorButton" Content="е" Click="ExhibitorButton_Click" HorizontalAlignment="Center" Canvas.Left="33" Canvas.Top="143" VerticalAlignment="Center" Width="50" Height="27"/>
-                <Button x:Name="X_Button" Content="x" Click="X_Button_Click" HorizontalAlignment="Center" Canvas.Left="33" Canvas.Top="65" VerticalAlignment="Top" Width="50" Height="29"/>
-                <Button x:Name="Y_Button" Content="y" Click="Y_Button_Click" HorizontalAlignment="Center" Canvas.Left="92" Canvas.Top="65" VerticalAlignment="Center" Width="50" Height="29"/>
+                <Button Content="." Click= "OperatorButton_Click" Width= "50" Height= "29"  Canvas.Left= "122"  Canvas.Top= "135" FontFamily="Times New Roman" FontSize="18"/>
+                <Button Content="=" Click= "EqualsButton_Click"  Width= "50"  Height= "29"  Canvas.Left= "181"  Canvas.Top= "135" FontFamily="Times New Roman" FontSize="18"/>
+                <Button Content="0" Click= "ZeroButton_Click"  Width= "50"  Height= "29"  Canvas.Left= "64"  Canvas.Top= "135" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="DivideButton" Content="/" Click="DivideButton_Click" HorizontalAlignment="Left" Canvas.Left="301" Canvas.Top="18" VerticalAlignment="Top" Width="50" Height="29" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="MultiplyButton" Content="*" Click="MultiplyButton_Click" HorizontalAlignment="Left" Canvas.Left="360" Canvas.Top="18" VerticalAlignment="Top" Width="50" Height="29" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="MinusButton" Content="-" Click="MinusButton_Click" Width="50" HorizontalAlignment="Left" Canvas.Left="419" Canvas.Top="18" VerticalAlignment="Top" Height="29" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="PlusButton" Content="+" Click="PlusButton_Click" HorizontalAlignment="Left" Canvas.Left="301" Canvas.Top="57" VerticalAlignment="Top" Width="50" Height="29" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="FirstBracketButton" Content="(" Click="FirstBracketButton_Click" HorizontalAlignment="Left" Canvas.Left="360" Canvas.Top="57" VerticalAlignment="Top" Width="50" Height="29" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="SecondBracketButton" Content=")" Click="SecondBracketButton_Click" HorizontalAlignment="Left" Canvas.Left="419" Canvas.Top="57" VerticalAlignment="Top" Height="29" Width="50" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="DegreeButton" Content="^" Click="DegreeButton_Click" HorizontalAlignment="Left" Canvas.Left="419" Canvas.Top="96" VerticalAlignment="Top" Height="29" Width="50" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="X_Button" Content="x" Click="X_Button_Click" HorizontalAlignment="Left" Canvas.Left="301" Canvas.Top="96" VerticalAlignment="Top" Width="50" Height="29" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="Y_Button" Content="y" Click="Y_Button_Click" HorizontalAlignment="Left" Canvas.Left="360" Canvas.Top="96" VerticalAlignment="Top" Width="50" Height="29" FontFamily="Times New Roman" FontSize="18"/>
+                <Button x:Name="delete" Content="Стереть" Canvas.Left="301" Canvas.Top="135" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="168" FontFamily="Times New Roman" FontSize="18" Click="delete_Click"/>
             </Canvas>
-
-            <Button x:Name="CalculateButton" Content="Расчитать" HorizontalAlignment="Left" Margin="50,366,0,0" VerticalAlignment="Top" Click="CalculateButton_Click" Height="40" Grid.Row="1" Width="128" Background="White" FontFamily="Times New Roman" FontSize="16"/>
-            <Label x:Name="label2" Content="x=" HorizontalAlignment="Left" Margin="56,496,0,0" VerticalAlignment="Top" Width="28" Height="28" Grid.Row="1"/>
-            <TextBox x:Name="textBox2" HorizontalAlignment="Left" Margin="97,504,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Height="20" Grid.Row="1"/>
-            <Label x:Name="label3" Content="f(x)=" HorizontalAlignment="Left" Margin="43,307,0,0" VerticalAlignment="Top" Height="24" Width="89" Grid.Row="1"/>
-            <Label x:Name="label5" Content="Label" HorizontalAlignment="Left" Margin="84,311,0,0" VerticalAlignment="Top" Height="24" Grid.Row="1"/>
-
-            <Label Content="Производная =" HorizontalAlignment="Left" Margin="37,411,0,0" VerticalAlignment="Top" Height="26" Grid.Row="1"/>
-            <Label x:Name="Proiz1" Content="Label" HorizontalAlignment="Left" Margin="166,411,0,0" VerticalAlignment="Top" Height="31" Grid.Row="1"/>
-            <Button x:Name="Proiz" Content="Вычислить производную" HorizontalAlignment="Left" Margin="50,443,0,0" VerticalAlignment="Top" Click="Proiz_Click" Height="34" Grid.Row="1"/>
             <Label Content="График функции" HorizontalAlignment="Left" Margin="736,6,0,0" VerticalAlignment="Top" Grid.Row="1" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" Foreground="White"/>
-            <Label Content="Область определения:" HorizontalAlignment="Left" Margin="27,64,0,0" VerticalAlignment="Top" Grid.Row="1" FontFamily="Times New Roman" FontSize="18"/>
-            <Label x:Name="DomainOutputLabel" Content="" HorizontalAlignment="Left" Margin="236,66,0,0" VerticalAlignment="Top" Height="31" Grid.Row="1" Width="203"/>
-            <Label Content="Четность/нечетность:" HorizontalAlignment="Left" Margin="27,95,0,0" VerticalAlignment="Top" Height="27" Grid.Row="1" FontFamily="Times New Roman" FontSize="18"/>
-            <Label x:Name="chetnostLabel" Content="" HorizontalAlignment="Left" Margin="236,97,0,0" VerticalAlignment="Top" Height="30" Grid.Row="1" Width="203"/>
+            <Label Content="1. Область определения:" HorizontalAlignment="Left" Margin="18,54,0,0" VerticalAlignment="Top" Grid.Row="1" FontFamily="Times New Roman" FontSize="18"/>
+            <Label x:Name="DomainOutputLabel" Content="" HorizontalAlignment="Left" Margin="218,56,0,0" VerticalAlignment="Top" Height="31" Grid.Row="1" Width="244" FontSize="18" FontFamily="Times New Roman"/>
+            <Label Content="2. Четность/нечетность:" HorizontalAlignment="Left" Margin="18,85,0,0" VerticalAlignment="Top" Height="27" Grid.Row="1" FontFamily="Times New Roman" FontSize="18"/>
+            <Label x:Name="chetnostLabel" Content="" HorizontalAlignment="Left" Margin="218,87,0,0" VerticalAlignment="Top" Height="30" Grid.Row="1" Width="244" FontSize="18" FontFamily="Times New Roman"/>
 
-            <Label Content="Точки пересечения с осями координат:" HorizontalAlignment="Left" Margin="28,127,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
-            <Label  Content="Ox:" HorizontalAlignment="Left" Margin="339,123,0,0" VerticalAlignment="Top" Height="38" Grid.Row="1" FontSize="18"/>
-            <Label  Content="Oy:" HorizontalAlignment="Left" Margin="444,121,0,0" VerticalAlignment="Top" Height="38" Grid.Row="1" FontSize="18"/>
-            <Label x:Name="LabelOx" Content="" HorizontalAlignment="Left" Margin="376,123,0,0" VerticalAlignment="Top" Grid.Row="1" Width="70" FontSize="18"/>
-            <Label x:Name="LabelOy" Content="" HorizontalAlignment="Left" Margin="473,125,0,0" VerticalAlignment="Top" Grid.Row="1" Width="70" FontSize="18"/>
-            <TextBox x:Name="StepsOutput" Margin="33,157,716,0" VerticalAlignment="Top" Height="78" IsReadOnly="True" TextWrapping="Wrap" Grid.Row="1"/>
+            <Label Content="3.Точки пересечения с осями координат:" HorizontalAlignment="Left" Margin="18,119,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
+            <Label  Content="Ox:" HorizontalAlignment="Left" Margin="339,119,0,0" VerticalAlignment="Top" Height="31" Grid.Row="1" FontSize="18" FontFamily="Times New Roman"/>
+            <Label  Content="Oy:" HorizontalAlignment="Left" Margin="444,119,0,0" VerticalAlignment="Top" Height="31" Grid.Row="1" FontSize="18" FontFamily="Times New Roman"/>
+            <Label x:Name="LabelOx" Content="" HorizontalAlignment="Left" Margin="381,119,0,0" VerticalAlignment="Top" Grid.Row="1" Width="70" FontSize="18" FontFamily="Times New Roman"/>
+            <Label x:Name="LabelOy" Content="" HorizontalAlignment="Left" Margin="473,119,0,0" VerticalAlignment="Top" Grid.Row="1" Width="70" FontSize="18" FontFamily="Times New Roman"/>
+            <TextBox x:Name="StepsOutput" Margin="18,147,557,0" VerticalAlignment="Top" Height="78" IsReadOnly="True" TextWrapping="Wrap" Grid.Row="1" FontFamily="Times New Roman" FontSize="18"/>
 
-            <Label Content="Промежутки монотонности:" HorizontalAlignment="Left" Margin="27,240,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="14"/>
-            <Label Content="Экстремумы:" HorizontalAlignment="Left" Margin="28,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="14"/>
+            <Label Content="4. Промежутки монотонности:" HorizontalAlignment="Left" Margin="18,230,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
+            <Label Content="5. Экстремумы:" HorizontalAlignment="Left" Margin="18,316,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
             <Label Content="Исследование функции" HorizontalAlignment="Left" Margin="174,10,0,0" VerticalAlignment="Top" Grid.Row="1" FontFamily="Times New Roman" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+            <Label Content="f(x')=" HorizontalAlignment="Left" Margin="27,256,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
+            <Label x:Name="Proizvodnay" Content="" HorizontalAlignment="Left" Margin="75,256,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
+
+            <DataGrid Name="MonoDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="339,235,557,186" FontFamily="Times New Roman" FontSize="18" Grid.Row="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Интервал" Binding="{Binding Interval}" Width="100" />
+                    <DataGridTextColumn Header="Поведение" Binding="{Binding Behavior}" Width="100" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Label x:Name="SolutionsOutputLabel" Content="" HorizontalAlignment="Left" Margin="18,283,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
+            <Label Content="min=" HorizontalAlignment="Left" Margin="147,316,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
+            <Label Content="max=" HorizontalAlignment="Left" Margin="147,347,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
+            <Label x:Name="MinValueLabel" Content="" HorizontalAlignment="Left" Margin="199,316,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
+            <Label x:Name="MaxValueLabel" Content="" HorizontalAlignment="Left" Margin="199,347,0,0" Grid.Row="1" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
         </Grid>
-
-
     </Border>
-
-
 </Window>
